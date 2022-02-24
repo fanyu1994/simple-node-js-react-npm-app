@@ -1,20 +1,15 @@
 pipeline {
-	agent any
-		stages {
-			stage('Build'){	
-				agent {
-					docker {
-						image 'node:6-alpine'
-							args '-p 3000:3000'
-					}
-				}
-				stages {
-					stage('Build') {
-						steps {
-							sh 'npm install'
-						}
-					}
-				}
+	agent {
+		docker {
+			lable 'docker'
+				image 'registry.cn-hangzhou.aliyuncs.com/eryajf/node:11.15'
+		}
+	}
+	stages {
+		stage('Build') { 
+			steps {
+				sh 'npm install --registry=https://registry.npm.taobao.org' 
 			}
 		}
+	}
 }
