@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat
 
 node {
     try {
@@ -8,9 +7,6 @@ node {
         def dockerName = 'emp-web'
         //环境配置，没有使用vue自带的环境配置，自定义了一个js存放服务器地址，参考下一节
         def env = 'test'
-
-        def dateFormat = new SimpleDateFormat('yyyyMMddHHmm')
-        def dockerTag = dateFormat.format(new Date())
 
         stage('git pull') {
             sh 'pwd'
